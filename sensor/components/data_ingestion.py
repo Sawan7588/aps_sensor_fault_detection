@@ -12,6 +12,7 @@ class DataIngestion:
 
     def __init__(self,data_ingestion_config:config_entity.DataIngestionConfig):
         try:
+            logging.info(f"{'>>'*20} Data Ingestion {'>>'*20}")
             self.data_ingestion_config = data_ingestion_config
         except Exception as e:
             raise SensorException(e, sys)
@@ -31,8 +32,8 @@ class DataIngestion:
             df.replace(to_replace="na", value = np.NAN, inplace=True)
 
             # save data in feature store
-            logging.info("create feature store folder of not available")
-            # create feature store folder of not available
+            logging.info("create feature store folder if not available")
+            # create feature store folder if not available
             feature_store_dir = os.path.dirname(self.data_ingestion_config.feature_store_file_path)
             os.makedirs(feature_store_dir, exist_ok = True)
 
