@@ -3,7 +3,7 @@ from sensor.exception import SensorException
 from sensor.logger import logging
 from typing import Optional
 import os,sys
-from sklearn.preprocessing import Pipeline 
+from sklearn.pipeline import Pipeline 
 import pandas as pd 
 import numpy as np 
 from sensor import utils
@@ -100,13 +100,14 @@ class DataTransformation:
 
             
 
-            artifact_entity.DataTransformationArtifact(
+            data_transformation_artifact = artifact_entity.DataTransformationArtifact(
                 transform_object_path = self.data_transformation_config.transform_object_path,
                 transformed_train_path = self.data_transformation_config.transformed_train_path, 
                 transformed_test_path = self.data_transformation_config.transformed_test_path, 
                 target_encoder_path = self.data_transformation_config.target_encoder_path
                 
                 )
+
 
             logging.info(f"Data Transformation object {data_transformation_artifact}")
             return data_transformation_artifact     
